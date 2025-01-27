@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frasquito de Amor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffe6f2;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .jar {
+      width: 200px;
+      height: 300px;
+      background-color: #fff;
+      border: 5px solid #ff99cc;
+      border-radius: 50px 50px 20px 20px;
+      position: relative;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .note {
+      width: 80%;
+      padding: 10px;
+      background-color: #ffccff;
+      border: 2px solid #ff66b3;
+      border-radius: 5px;
+      margin: 10px auto;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .note:hover {
+      background-color: #ff99cc;
+    }
+
+    .message {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #ffffff;
+      border: 2px solid #ff66b3;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .button {
+      background-color: #ff66b3;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .button:hover {
+      background-color: #ff99cc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Frasquito de Amor</h1>
+    <p>Haz clic en un papelito para leer un mensaje de amor. 💕</p>
+    <div class="jar" id="jar">
+      <!-- Notes will be added here dynamically -->
+    </div>
+    <div class="message" id="message"></div>
+    <button class="button" onclick="resetMessages()">Volver a llenar el frasquito</button>
+  </div>
+
+  <script>
+    const notes = [
+      "Eres la razón por la que sonrío cada día.",
+      "Amo cómo haces que todo sea mejor solo con tu presencia.",
+      "Eres mi sol en los días nublados.",
+      "Cada día te amo más y más.",
+      "No puedo esperar para abrazarte y llenarte de besos.",
+      "Gracias por ser mi motivo, mi inspiración y mi felicidad.",
+      "Me haces creer que todo es posible solo con estar contigo.",
+      "Eres el amor de mi vida, mi reina hermosa.",
+      "Estoy tan orgulloso de todo lo que eres y de lo que logras.",
+      "Cada día contigo es un regalo que atesoro con todo mi corazón."
+    ];
+
+    const jar = document.getElementById("jar");
+    const messageBox = document.getElementById("message");
+
+    function createNotes() {
+      jar.innerHTML = ""; // Clear jar
+      notes.forEach((note, index) => {
+        const noteElement = document.createElement("div");
+        noteElement.classList.add("note");
+        noteElement.textContent = `Papelito ${index + 1}`;
+        noteElement.addEventListener("click", () => showNote(note));
+        jar.appendChild(noteElement);
+      });
+    }
+
+    function showNote(note) {
+      messageBox.textContent = note;
+      messageBox.style.display = "block";
+    }
+
+    function resetMessages() {
+      createNotes();
+      messageBox.style.display = "none";
+    }
+
+    // Initialize the jar with notes
+    createNotes();
+  </script>
+</body>
+</html>
